@@ -8,6 +8,7 @@ module.exports = {
     delete: deleteMeme,
     edit,
     update,
+    allMemes,
 
   };
 
@@ -21,17 +22,24 @@ module.exports = {
 
 function index(req, res) {
     console.log(req.query.category);
-    Meme.find({}, function(err, memes) {
+    Meme.find({category: req.query.category}, function(err, memes) {
         res.render('memes/index', {title: req.query.category, memes });
         //memes/index
         // console.log(err);
     });
 }
 
+function allMemes(req, res) {
+    Meme.find({}, function(err, memes) {
+      res.render('memes/index', { title: 'All Memes', memes });
+    });
+  }
+
 function create(req, res) {
     const meme = new Meme(req.body);
     // Assign the logged in user's id
     meme.user = req.user._id;
+    meme.userName = req.user.name;
     meme.save(function(err) {
       if (err) return render('memes/new');
       // Probably want to go to newly added meme's show view
@@ -73,7 +81,7 @@ function create(req, res) {
   function show(req, res) {
     Meme.findById(req.params.id, function(err, meme) {
         if (err) console.log(err);
-        res.render('memes/show', {meme});
+        res.render('memes/show', {meme, title: 'Current Meme'});
         // { title: 'Meme Detail', meme}
        
     });

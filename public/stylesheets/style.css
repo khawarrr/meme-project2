@@ -18,3 +18,13 @@ a {
 .login img {
   height: 30px;
 }
+
+.imgs {
+  width: 40%;
+  height: 40%;
+}
+
+.indexFlex {
+  display: flex;
+
+}

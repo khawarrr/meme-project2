@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const reviewsCtrl = require('../controllers/reviews');
+const commentsCtrl = require('../controllers/comments');
 const isLoggedIn = require('../config/auth');
 
-router.post('/memes/:id/reviews', isLoggedIn, reviewsCtrl.create);
-router.delete('/reviews/:id', isLoggedIn, reviewsCtrl.delete);
+router.post('/memes/:id/comments', isLoggedIn, commentsCtrl.create);
+router.delete('/comments/:id', isLoggedIn, commentsCtrl.delete);
 
 module.exports = router;

@@ -1,6 +1,19 @@
 <%- include('../partials/header') %>
 
 <h1><%= title   %> Memes </h1>
+<div class="indexFlex" >
+<% memes.forEach(function(m) { %> 
+  <div>
+  <img class="imgs" src="<%= m.image %>" >
+  <h5>Made by: <%= m.userName %> </h5>
+  <% if (m.user.equals(user._id)) { %>
+    <form action="/memes/<%= user._id %>?_method=DELETE" method="POST">
+      <button type="submit">DELETE Post</button>
+    </form>
+  <% } %> 
+</div>
 
+<% }) %> 
+</div>
 
 <%- include('../partials/footer') %> 
