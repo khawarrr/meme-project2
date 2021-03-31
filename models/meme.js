@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const reviewSchema = new Schema({
+const commentSchema = new Schema({
   content: String,
-  rating: {type: Number, min: 1, max: 5, default: 5},
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   userName: String,
   userAvatar: String 
@@ -12,13 +11,19 @@ const reviewSchema = new Schema({
 });
 
 const memeSchema = new Schema({
-  title: {
+  // title: {
+  //   type: String,
+  //   required: true
+  // },
+  category: {
     type: String,
-    required: true
+    enum: ["Gaming", "GA", "Covid"]
   },
-  mpaaRating: String,
-//   cast: [{type: Schema.Types.ObjectId, ref: 'Performer'}],
-  reviews: [reviewSchema]
+  image: String,
+
+  user: {type: Schema.Types.ObjectId, ref: 'User'},
+
+  comments: [commentSchema]
 }, {
   timestamps: true
 });

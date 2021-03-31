@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<h2>Add a New Meme</h2>
+<form action="/memes" method="POST">
+  <label>Link to your Meme:
+    <input type="text" name="link">
+  </label><br>
+  <label>Select Category:
+    <select name="category">
+      <option value="Gaming">Gaming</option>
+      <option value="GA">GA</option>
+      <option value="Covid">Covid</option>
+    </select>
+  </label><br>
+  
+  <input type="submit" value="Add Meme">
+</form>
+  
+<%- include('../partials/footer') %>

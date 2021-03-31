@@ -2,9 +2,13 @@ const Meme = require('../models/meme');
 
 module.exports = {
     index,
-    // show,
-    // new: newMeme,
-    // create
+    show,
+    new: newMeme,
+    create,
+    delete: deleteMeme,
+    edit,
+    update,
+
   };
 
 //   function index(req, res) {
@@ -13,30 +17,71 @@ module.exports = {
 //     });
 //   }
 
+// find looks for a category that matches req.query.category
+
 function index(req, res) {
+    console.log(req.query.category);
     Meme.find({}, function(err, memes) {
-        res.render('index', { memes });
+        res.render('memes/index', {title: req.query.category, memes });
+        //memes/index
         // console.log(err);
     });
 }
 
+function create(req, res) {
+    const meme = new Meme(req.body);
+    // Assign the logged in user's id
+    meme.user = req.user._id;
+    meme.save(function(err) {
+      if (err) return render('memes/new');
+      // Probably want to go to newly added meme's show view
+      res.redirect(`memes/${meme._id}`);
+    });
+  }
 
-//   function show(req, res) {
-//     Meme.findById(req.params.id)
-//     .populate('cast').exec(function(err, meme) {
-//       // Query for performers not already in this meme's cast array
-//       Performer.find(
-//         {_id: {$nin: meme.cast}},
-//         function(err, performers) {
-//           res.render('memes/show', { title: 'Meme Detail', meme, performers });
-//         }
-//       );
-//     });
-//   }
+  function deleteMeme(req, res) {
+    Meme.findOneAndDelete(
+      // Ensue that the meme was created by the logged in user
+      {_id: req.params.id, user: req.user._id}, function(err) {
+        // Deleted meme, so must redirect to index
+        res.redirect('/memes');
+      }
+    );
+  }
+
+  function edit(req, res) {
+    Meme.findOne({_id: req.params.id, user: req.user._id}, function(err, meme) {
+      if (err || !meme) return res.redirect('/memes');
+      res.render('memes/edit', {meme});
+    });
+  }
+
+  function update(req, res) {
+    Meme.findOneAndUpdate(
+      {_id: req.params.id, user: req.user._id},
+      // update object with updated properties
+      req.body,
+      // options object with new: true to make sure updated doc is returned
+      {new: true},
+      function(err, meme) {
+        if (err || !meme) return res.redirect('/memes');
+        res.redirect(`memes/${meme._id}`);
+      }
+    );
+  }
+
+  function show(req, res) {
+    Meme.findById(req.params.id, function(err, meme) {
+        if (err) console.log(err);
+        res.render('memes/show', {meme});
+        // { title: 'Meme Detail', meme}
+       
+    });
+  }
   
-//   function newMeme(req, res) {
-//     res.render('memes/new', { title: 'Add Meme' });
-//   }
+  function newMeme(req, res) {
+    res.render('memes/new', { title: 'Add Meme' });
+  }
   
 //   function create(req, res) {
 //     // convert nowShowing's checkbox of nothing or "on" to boolean
