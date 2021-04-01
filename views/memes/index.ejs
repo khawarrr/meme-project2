@@ -4,10 +4,12 @@
 <div class="indexFlex" >
 <% memes.forEach(function(m) { %> 
   <div>
+    <a href="/memes/<%=m._id%> ">
   <img class="imgs" src="<%= m.image %>" >
+</a>
   <h5>Made by: <%= m.userName %> </h5>
   <% if (m.user.equals(user._id)) { %>
-    <form action="/memes/<%= user._id %>?_method=DELETE" method="POST">
+    <form action="/memes/<%= m._id %>?_method=DELETE" method="POST">
       <button type="submit">DELETE Post</button>
     </form>
   <% } %> 

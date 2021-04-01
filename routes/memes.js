@@ -3,9 +3,9 @@ const router = express.Router();
 const memesCtrl = require('../controllers/memes');
 const isLoggedIn = require('../config/auth');
 
-router.get('/', memesCtrl.index);
+router.get('/', isLoggedIn, memesCtrl.index);
 
-router.get('/all', memesCtrl.allMemes )
+router.get('/all', isLoggedIn, memesCtrl.allMemes )
 
 // Use isLoggedIn middleware to protect routes below
 router.get('/new', isLoggedIn, memesCtrl.new);

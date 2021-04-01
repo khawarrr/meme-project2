@@ -48,11 +48,13 @@ function create(req, res) {
   }
 
   function deleteMeme(req, res) {
-    Meme.findOneAndDelete(
+    
+    Meme.findByIdAndDelete(
       // Ensue that the meme was created by the logged in user
-      {_id: req.params.id, user: req.user._id}, function(err) {
+      req.params.id, function(err) {
         // Deleted meme, so must redirect to index
-        res.redirect('/memes');
+
+        res.redirect('/memes/all');
       }
     );
   }
