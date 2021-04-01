@@ -31,6 +31,7 @@ function create(req, res) {
     
     meme.comments.push(req.body);
     meme.save(function(err) {
+    
       res.redirect(`/memes/${meme._id}`);
     });
   });

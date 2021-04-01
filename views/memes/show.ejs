@@ -2,5 +2,47 @@
 
 <h1><%= title   %> Memes </h1>
 
+<img class="imgs" src="<%= meme.image %>" >
+<form action="/memes/<%= meme._id %>/comments" method="POST">
+    <!-- Be sure name attributes of inputs match the model properties -->
+    <input name="content" type="text">
+    
+    <button type="submit">ADD COMMENT</button>
+  </form>
+
+  <% if (meme.comments.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Date</th>
+          <th>Comment</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% meme.comments.forEach(function(c) { %>
+          <tr>
+            <td class="comment-user"><img src="<%= c.userAvatar %>">&nbsp;<%= c.userName %></td>
+            <td><%= c.createdAt.toLocaleDateString() %></td>
+            <td><%= c.content %></td>
+            <td>
+              <% if (user && user._id.equals(c.user)) { %>
+                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                  <button type="submit">X</button>
+                </form>
+
+               
+
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+     
+      </tbody>
+    </table>
+  <% } else { %>
+    <h5>No Comments Yet</h5>
+  <% } %>
 
 <%- include('../partials/footer') %> 

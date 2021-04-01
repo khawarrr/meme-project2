@@ -19,12 +19,18 @@ a {
   height: 30px;
 }
 
-.imgs {
-  width: 40%;
-  height: 40%;
-}
 
 .indexFlex {
-  display: flex;
-
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  justify-items: center;
+  grid-gap: 5px;
+  grid-row-gap: 0px; */
+  width: 30%;
+  height: 30%;
 }
+
+.imgs img {
+  /* width: 100%;*/
+  display: inline-block;
+} 
