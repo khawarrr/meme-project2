@@ -12,13 +12,7 @@ module.exports = {
 
   };
 
-//   function index(req, res) {
-//     Meme.find({}, function(err, memes) {
-//       res.render('/index', { title: 'All Memes', memes });
-//     });
-//   }
 
-// find looks for a category that matches req.query.category
 
 function index(req, res) {
     console.log(req.query.category);
@@ -83,7 +77,7 @@ function create(req, res) {
   function show(req, res) {
     Meme.findById(req.params.id, function(err, meme) {
         if (err) console.log(err);
-        res.render('memes/show', {meme, title: 'Current Meme'});
+        res.render('memes/show', {meme, title: 'Current '});
         // { title: 'Meme Detail', meme}
        
     });
@@ -92,18 +86,4 @@ function create(req, res) {
   function newMeme(req, res) {
     res.render('memes/new', { title: 'Add Meme' });
   }
-  
-//   function create(req, res) {
-//     // convert nowShowing's checkbox of nothing or "on" to boolean
-//     req.body.nowShowing = !!req.body.nowShowing;
-//     for (let key in req.body) {
-//       if (req.body[key] === '') delete req.body[key];
-//     }
-//     const meme = new Meme(req.body);
-//     meme.save(function(err) {
-//       if (err) return res.redirect('/memes/new');
-//       console.log(meme);
-//       res.redirect(`/memes/${meme._id}`);
-//     });
-//   }
   

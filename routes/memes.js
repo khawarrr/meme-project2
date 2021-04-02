@@ -15,8 +15,7 @@ router.post('/', isLoggedIn, memesCtrl.create);
 
 router.delete('/:id', isLoggedIn, memesCtrl.delete);
 
-// router.post('/:id/comments', isLoggedIn, commentsCtrl.create);
-// router.delete('/comments/:id', isLoggedIn, commentsCtrl.delete);
+
 
 
 

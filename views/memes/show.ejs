@@ -32,6 +32,10 @@
                   <button type="submit">X</button>
                 </form>
 
+                <form action="/comments/<%= c._id %>?_method=PUT" method="POST">
+                    <input name="content" placeholder="<%= c.content %>">
+                    <button type="submit">Edit</button>
+                  </form>
                
 
               <% } %>

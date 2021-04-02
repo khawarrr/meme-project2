@@ -1,9 +1,10 @@
 <%- include('../partials/header') %>
-
+<div class="mainTitle">
 <h1><%= title   %> Memes </h1>
+</div>
 <div class="indexFlex" >
 <% memes.forEach(function(m) { %> 
-  <div>
+  <div class="imgInd">
     <a href="/memes/<%=m._id%> ">
   <img class="imgs" src="<%= m.image %>" >
 </a>
