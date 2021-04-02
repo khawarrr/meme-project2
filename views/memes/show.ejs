@@ -1,15 +1,18 @@
 <%- include('../partials/header') %>
-
+<div class="currentMemeTitle">
 <h1><%= title   %> Memes </h1>
+</div>
 
-<img class="imgs" src="<%= meme.image %>" >
+<img class="imgsCurrent" src="<%= meme.image %>" >
+<div class="imgComment">
 <form action="/memes/<%= meme._id %>/comments" method="POST">
     <!-- Be sure name attributes of inputs match the model properties -->
     <input name="content" type="text">
     
     <button type="submit">ADD COMMENT</button>
   </form>
-
+</div>
+<div class="memeCommentSection">
   <% if (meme.comments.length) { %>
     <table>
       <thead>
@@ -22,6 +25,7 @@
       </thead>
       <tbody>
         <% meme.comments.forEach(function(c) { %>
+            <div class="commentRow">
           <tr>
             <td class="comment-user"><img src="<%= c.userAvatar %>">&nbsp;<%= c.userName %></td>
             <td><%= c.createdAt.toLocaleDateString() %></td>
@@ -29,13 +33,15 @@
             <td>
               <% if (user && user._id.equals(c.user)) { %>
                 <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
-                  <button type="submit">X</button>
+                  <button type="submit">Delete Comment</button>
                 </form>
-
+                <div class="editComment">
                 <form action="/comments/<%= c._id %>?_method=PUT" method="POST">
                     <input name="content" placeholder="<%= c.content %>">
                     <button type="submit">Edit</button>
                   </form>
+                </div>
+            </div>
                
 
               <% } %>
@@ -48,5 +54,7 @@
   <% } else { %>
     <h5>No Comments Yet</h5>
   <% } %>
+
+</div>
 
 <%- include('../partials/footer') %> 
