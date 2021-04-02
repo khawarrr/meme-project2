@@ -1,35 +1,34 @@
-# MINESWEEPER
+# ALMOST FUNNY
 
 
 ### Description
-Minesweeper is a single player puzzle game. The goal of the game is to click on squares and clear the board without clicking
-on hidden mines. The clues are provided in terms of number of neighbor mines that could be directly connected to any of square's edges that were clicked before. 
+Meme is a concept that is shared from person to person. Meme describes social ideas, current events and many other things. 
 
 #### History
-The Minesweeper was created for windows by Microsoft employees, Rober Donner and Curtis Johnson, in 1990.
+While memes today are recognized as amusing or interesting items that spread widely through the internet, the word itself dates to the 1970s. Originally "memes" were conceptualized as units of cultural transfer, and could be boiled down to "ideas that catch on and pass between people via culture."
 
 
 
 ### Screenshots
-- ![When the game starts](screenshots/start.png)
+- ![Before LogIn](https://i.imgur.com/hQKqCfZ.png)
 
-- ![In the middle of the game](screenshots/mid.png)
+- ![After LogIn](https://i.imgur.com/F2jCbtv.png)
 
-- ![When click on a mine](screenshots/end.png)
+- ![Comment Section](https://i.imgur.com/hVODc6J.png)
 
 
 
 ## Technologies Used
 
-- Html, CSS and JavaScript
+- Html, CSS, MEN Stack: mongoDB, express js, node js
 
 
 ## Getting Started
 
-https://khawarrr.github.io/project1_minesweeper/
+https://sei-meme.herokuapp.com/
 
 ## Next Steps
 
-- Add count up timer 
-- Add a Happy/Sad Emoji that would alternate depending on different states of game
-- last but not least add a background music to the game.
+- change the theme of website
+- make the ui more user friendly
+- last but not least add more visual effects
